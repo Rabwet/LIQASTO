@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout — Liqasto Kenya</title>
+  <meta name="description" content="Complete your drinks and smokes order with M-Pesa or card on Liqasto Kenya.">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22 0%22 100%22 100%22><text y=%22.9em%22 font-size=%2290%22>🍾</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/pages.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body class="page-wrapper">
+
+  <header class="header">
+    <div class="header__top">
+      <a href="/" class="header__logo">
+        <span class="header__logo-icon">🍾</span>
+        <span class="header__logo-text">LIQA<span>STO</span></span>
+      </a>
+      <div style="margin-left: auto; color: #fff; font-size: 13px; font-weight: 600;">
+        🔒 Encrypted & Verified Checkout
+      </div>
+    </div>
+  </header>
+
+  <main class="page-content" style="max-width: var(--container-max); margin: 0 auto; padding: 32px 16px; width: 100%;">
+    <h1 style="font-size: var(--text-2xl); margin-bottom: 24px;">Checkout & Delivery</h1>
+
+    <form id="checkout-form">
+      <div style="display: grid; grid-template-columns: 1fr 380px; gap: 32px; align-items: flex-start;">
+
+        <!-- Delivery & Payment Left Column -->
+        <div style="display: flex; flex-direction: column; gap: 24px;">
+
+          <!-- Step 1: Customer Contact -->
+          <div class="card" style="padding: 24px;">
+            <h2 style="font-size: 16px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+              <span style="background: var(--color-emerald-600); color: #fff; width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 12px;">1</span>
+              Customer Contact Details
+            </h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+              <div class="form-group">
+                <label class="form-label" for="checkout-name">Full Name *</label>
+                <input type="text" id="checkout-name" class="form-input" required placeholder="e.g. John Kamau">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="checkout-phone">Phone Number (M-Pesa) *</label>
+                <input type="tel" id="checkout-phone" class="form-input" required placeholder="e.g. 0712 345 678">
+              </div>
+            </div>
+            <div class="form-group" style="margin-top: 12px; margin-bottom: 0;">
+              <label class="form-label" for="checkout-email">Email Address *</label>
+              <input type="email" id="checkout-email" class="form-input" required placeholder="e.g. user@gmail.com">
+            </div>
+          </div>
+
+          <!-- Step 2: Delivery Address & Zone -->
+          <div class="card" style="padding: 24px;">
+            <h2 style="font-size: 16px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+              <span style="background: var(--color-emerald-600); color: #fff; width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 12px;">2</span>
+              Delivery Location & Zone
+            </h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+              <div class="form-group">
+                <label class="form-label" for="checkout-county">County *</label>
+                <select id="checkout-county" class="form-select" required>
+                  <option value="">Select County</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="checkout-area">Area / Sub-county *</label>
+                <select id="checkout-area" class="form-select" disabled required>
+                  <option value="">Select County First</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="checkout-street">Street, Apartment, House or Office No. *</label>
+              <input type="text" id="checkout-street" class="form-input" required placeholder="e.g. Westlands, Mpaka Road, Apartment 4B">
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label" for="checkout-notes">Rider Instructions (Optional)</label>
+              <input type="text" id="checkout-notes" class="form-input" placeholder="e.g. Call upon arrival, ring bell">
+            </div>
+          </div>
+
+          <!-- Step 3: Payment Method -->
+          <div class="card" style="padding: 24px;">
+            <h2 style="font-size: 16px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+              <span style="background: var(--color-emerald-600); color: #fff; width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 12px;">3</span>
+              Payment Method
+            </h2>
+
+            <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px;">
+              <!-- M-Pesa Option -->
+              <label style="display: flex; align-items: center; gap: 12px; padding: 12px 16px; border: 2px solid var(--color-emerald-500); border-radius: var(--radius-md); background: var(--color-emerald-50); cursor: pointer;">
+                <input type="radio" name="paymentMethod" value="mpesa" checked>
+                <span style="font-size: 20px;">📱</span>
+                <div style="flex: 1;">
+                  <strong style="color: var(--color-emerald-900);">Lipa na M-Pesa (Instant STK Push)</strong>
+                  <div style="font-size: 12px; color: var(--color-emerald-700);">A prompt will be sent directly to your phone to enter PIN.</div>
+                </div>
+              </label>
+
+              <!-- Card Option -->
+              <label style="display: flex; align-items: center; gap: 12px; padding: 12px 16px; border: 1px solid var(--color-gray-200); border-radius: var(--radius-md); cursor: pointer;">
+                <input type="radio" name="paymentMethod" value="card">
+                <span style="font-size: 20px;">💳</span>
+                <div style="flex: 1;">
+                  <strong>Credit / Debit Card</strong>
+                  <div style="font-size: 12px; color: var(--color-gray-500);">Visa, Mastercard via secure gateway.</div>
+                </div>
+              </label>
+
+              <!-- Cash / M-Pesa on Delivery -->
+              <label style="display: flex; align-items: center; gap: 12px; padding: 12px 16px; border: 1px solid var(--color-gray-200); border-radius: var(--radius-md); cursor: pointer;">
+                <input type="radio" name="paymentMethod" value="cod">
+                <span style="font-size: 20px;">💵</span>
+                <div style="flex: 1;">
+                  <strong>Pay on Delivery</strong>
+                  <div style="font-size: 12px; color: var(--color-gray-500);">M-Pesa or Cash upon rider arrival.</div>
+                </div>
+              </label>
+            </div>
+
+            <!-- M-Pesa Prompt Box -->
+            <div id="mpesa-details-box" style="background: #fff; border: 1px dashed var(--color-emerald-500); border-radius: var(--radius-md); padding: 14px;">
+              <label class="form-label" for="mpesa-phone">M-Pesa Phone Number for PIN Prompt</label>
+              <input type="tel" id="mpesa-phone" class="form-input" placeholder="07XXXXXXXX or 2547XXXXXXXX">
+              <span style="font-size: 11px; color: var(--color-gray-500); margin-top: 4px; display: block;">You will receive an STK Push popup on your phone to complete payment.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Order Summary Right Column -->
+        <div class="card" style="padding: 24px; position: sticky; top: 90px;">
+          <h3 style="font-size: 16px; margin-bottom: 16px; border-bottom: 1px solid var(--color-gray-100); padding-bottom: 8px;">Order Summary</h3>
+
+          <div id="checkout-items-list" style="max-height: 280px; overflow-y: auto; margin-bottom: 16px;">
+            <!-- Cart items summary -->
+          </div>
+
+          <div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 8px; color: var(--color-gray-600);">
+            <span>Items Subtotal</span>
+            <span id="checkout-subtotal" style="font-weight: 600; color: var(--color-gray-900);">KSh 0</span>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 12px; color: var(--color-gray-600);">
+            <span>Delivery Fee</span>
+            <span id="checkout-delivery-fee" style="font-weight: 600; color: var(--color-emerald-700);">KSh 250</span>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; font-size: 18px; font-weight: 800; color: var(--color-gray-900); border-top: 1px solid var(--color-gray-200); padding-top: 12px; margin-bottom: 20px;">
+            <span>Total to Pay</span>
+            <span id="checkout-total" style="color: var(--color-emerald-700);">KSh 0</span>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 14px; font-size: 15px;">
+            Complete Order ⚡
+          </button>
+
+          <p style="font-size: 11px; color: var(--color-gray-500); text-align: center; margin-top: 12px; line-height: 1.4;">
+            By placing your order you certify you are 18 years or older. Identification is required upon delivery.
+          </p>
+        </div>
+      </div>
+    </form>
+  </main>
+
+  <script type="module" src="/js/app.js"></script>
+  <script type="module">
+    import { initCheckout } from '/js/checkout.js';
+    document.addEventListener('DOMContentLoaded', initCheckout);
+  </script>
+</body>
+</html>

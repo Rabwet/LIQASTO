@@ -1,0 +1,16 @@
+{
+  "name": "liqasto",
+  "version": "1.0.0",
+  "description": "Kenya's Premier Liquor, Cigarettes & Accessories E-Commerce Platform",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "seed": "node seed.js",
+    "set-admin": "node set-admin.js"
+  },
+  "keywords": ["ecommerce", "kenya", "liquor", "mpesa", "firebase"],
+  "author": "Liqasto",
+  "license": "ISC"
+}

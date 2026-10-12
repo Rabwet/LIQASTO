@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Wishlist — Liqasto Kenya</title>
+  <meta name="description" content="View and manage your saved drinks and accessories on Liqasto.">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22 0%22 100%22 100%22><text y=%22.9em%22 font-size=%2290%22>🍾</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/pages.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body class="page-wrapper">
+
+  <header class="header">
+    <div class="header__top">
+      <a href="/" class="header__logo">
+        <span class="header__logo-icon">🍾</span>
+        <span class="header__logo-text">LIQA<span>STO</span></span>
+      </a>
+      <div class="header__actions" style="margin-left: auto;">
+        <a href="/cart.html" class="header__action" style="color: #fff;">Cart 🛒</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-content" style="max-width: var(--container-max); margin: 0 auto; padding: 32px 16px; width: 100%;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+      <h1 style="font-size: var(--text-2xl); margin: 0;">My Saved Wishlist ❤️</h1>
+      <a href="/category.html" class="btn btn-secondary btn-sm">Explore More Drinks</a>
+    </div>
+
+    <div id="wishlist-container" class="product-grid">
+      <!-- Loaded dynamically -->
+    </div>
+  </main>
+
+  <footer class="footer" style="background: var(--gradient-footer); color: #fff; padding: 32px 16px; margin-top: auto; text-align: center; font-size: 13px; color: rgba(255,255,255,0.7);">
+    © 2026 Liqasto Kenya. 18+ only.
+  </footer>
+
+  <script type="module" src="/js/app.js"></script>
+  <script type="module">
+    import { getWishlistItems, removeFromWishlist } from '/js/wishlist.js';
+    import { addToCart } from '/js/cart.js';
+    import { formatPrice, sanitize } from '/js/utils.js';
+    import { emptyState, toast } from '/js/ui.js';
+
+    function renderWishlist() {
+      const container = document.querySelector('#wishlist-container');
+      const items = getWishlistItems();
+
+      if (items.length === 0) {
+        container.innerHTML = emptyState({
+          icon: '🤍',
+          title: 'Your Wishlist is Empty',
+          text: 'Explore our catalog and tap the heart icon on any drinks or accessories to save them.',
+          actionText: 'Browse Catalog',
+          actionUrl: '/category.html'
+        });
+        return;
+      }
+
+      container.innerHTML = items.map(item => `
+        <div class="product-card">
+          <div class="product-card__image-wrap">
+            <a href="/product.html?id=${sanitize(item.productId)}">
+              <img class="product-card__image" src="${sanitize(item.image || 'https://images.unsplash.com/photo-1527281400683-1aae777175f8?w=300')}" alt="${sanitize(item.name)}">
+            </a>
+          </div>
+          <div class="product-card__body">
+            <span class="product-card__category">${sanitize(item.brand || 'Liqasto')}</span>
+            <h3 class="product-card__name">
+              <a href="/product.html?id=${sanitize(item.productId)}">${sanitize(item.name)}</a>
+            </h3>
+            <div class="product-card__price-row">
+              <span class="product-card__price">${formatPrice(item.price)}</span>
+            </div>
+            <div style="display: flex; gap: 8px; margin-top: 10px;">
+              <button class="btn btn-primary btn-sm move-cart-btn" data-id="${sanitize(item.productId)}" style="flex: 1;">
+                🛒 Add to Cart
+              </button>
+              <button class="btn btn-ghost btn-sm remove-wishlist-btn" data-id="${sanitize(item.productId)}" style="color: var(--color-error);">
+                ✕
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      container.querySelectorAll('.move-cart-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.dataset.id;
+          const item = items.find(i => i.productId === id);
+          if (item) {
+            addToCart({ id: item.productId, name: item.name, price: item.price, images: [item.image] });
+            toast.success(`Moved ${item.name} to cart!`);
+          }
+        });
+      });
+
+      container.querySelectorAll('.remove-wishlist-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          removeFromWishlist(btn.dataset.id);
+          renderWishlist();
+        });
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', renderWishlist);
+  </script>
+</body>
+</html>

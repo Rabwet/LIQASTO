@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account (18+) — Liqasto Kenya</title>
+  <meta name="description" content="Register an account on Liqasto Kenya. Must be 18 years or older with valid Gmail account.">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22 0%22 100%22 100%22><text y=%22.9em%22 font-size=%2290%22>🍾</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/pages.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+
+  <div class="auth-page">
+    <div class="auth-page__side">
+      <div class="auth-page__side-content">
+        <span class="badge" style="background: var(--color-emerald-400); color: #022c22; font-weight: 700; margin-bottom: 12px; display: inline-block;">JOIN LIQASTO</span>
+        <h1 class="auth-page__side-title">Premium Drinks & Accessories, 18+ Only</h1>
+        <p class="auth-page__side-text">Create your account to unlock instant ordering across Nairobi, track deliveries live, and access exclusive member deals.</p>
+        <div style="background: rgba(0,0,0,0.2); padding: 16px; border-radius: var(--radius-md); font-size: 13px; line-height: 1.5; border-left: 3px solid var(--color-emerald-400);">
+          ⚠️ <strong>Legal Age Requirement:</strong> In strict compliance with Kenyan regulations (Alcoholic Drinks Control Act), customers must be 18 or older.
+        </div>
+      </div>
+    </div>
+
+    <div class="auth-page__main">
+      <div class="auth-form" style="max-width: 480px;">
+        <div class="auth-form__header">
+          <a href="/" class="auth-form__logo">
+            <span>LIQASTO</span> 🍾
+          </a>
+          <h2 class="auth-form__title">Create an Account</h2>
+          <p class="auth-form__subtitle">Strictly for adults aged 18 and above</p>
+        </div>
+
+        <form id="register-form">
+          <div class="form-group">
+            <label class="form-label" for="reg-name">Full Legal Name *</label>
+            <input type="text" id="reg-name" class="form-input" required placeholder="e.g. Wangari Maathai">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="reg-email">Gmail Address Only *</label>
+            <input type="email" id="reg-email" class="form-input" required placeholder="example@gmail.com" autocomplete="email">
+            <span style="font-size: 11px; color: var(--color-gray-500); display: block; margin-top: 4px;">Must be a valid @gmail.com email address.</span>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="form-group">
+              <label class="form-label" for="reg-phone">Kenyan Phone *</label>
+              <input type="tel" id="reg-phone" class="form-input" required placeholder="0712 345 678">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="reg-dob">Date of Birth (18+) *</label>
+              <input type="date" id="reg-dob" class="form-input" required>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="form-group">
+              <label class="form-label" for="reg-password">Password *</label>
+              <input type="password" id="reg-password" class="form-input" required minlength="6" placeholder="Min. 6 chars">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="reg-confirm-password">Confirm Password *</label>
+              <input type="password" id="reg-confirm-password" class="form-input" required minlength="6" placeholder="Re-enter">
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-top: 4px;">
+            <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 12px; color: var(--color-gray-700); cursor: pointer;">
+              <input type="checkbox" id="reg-terms" required style="margin-top: 3px;">
+              <span>I confirm that I am at least 18 years of age and agree to Liqasto's Terms of Service and Responsible Drinking Policy.</span>
+            </label>
+          </div>
+
+          <button type="submit" id="reg-submit-btn" class="btn btn-primary" style="width: 100%; padding: 12px; margin-top: 8px;">
+            Complete Registration
+          </button>
+        </form>
+
+        <div class="auth-form__footer" style="margin-top: 24px; text-align: center; font-size: 13px; color: var(--color-gray-600);">
+          Already have an account? <a href="/login.html" style="color: var(--color-emerald-700); font-weight: 700;">Sign In</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/js/app.js"></script>
+  <script type="module">
+    import { register, redirectIfAuthenticated } from '/js/auth.js';
+    import { loadingOverlay } from '/js/ui.js';
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await redirectIfAuthenticated();
+
+      const form = document.querySelector('#register-form');
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const name = document.querySelector('#reg-name').value.trim();
+        const email = document.querySelector('#reg-email').value.trim();
+        const phone = document.querySelector('#reg-phone').value.trim();
+        const dob = document.querySelector('#reg-dob').value;
+        const password = document.querySelector('#reg-password').value;
+        const confirmPassword = document.querySelector('#reg-confirm-password').value;
+
+        loadingOverlay.show('Creating account...');
+        try {
+          if (password !== confirmPassword) {
+            throw new Error('Passwords do not match.');
+          }
+          await register({ name, email, phone, dob, password, confirmPassword });
+          loadingOverlay.hide();
+          window.location.href = '/';
+        } catch (err) {
+          loadingOverlay.hide();
+          toast.error(err?.message || 'Registration failed.');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

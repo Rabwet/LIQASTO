@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liqasto — Kenya's Premier Liquor & Smokes Delivery</title>
+  <meta name="description" content="Order alcohol, wines, whiskeys, beers, cigarettes, and smoking drinkware accessories in Kenya. Fast same-day delivery in Nairobi. Lipa na M-Pesa. 18+ only.">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22 0%22 100%22 100%22><text y=%22.9em%22 font-size=%2290%22>🍾</text></svg>">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/pages.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body class="page-wrapper">
+
+  <!-- ── Top Warning Strip ── -->
+  <div style="background: #000; color: #a7f3d0; text-align: center; padding: 6px 12px; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;">
+    🔞 Strictly 18+ Only • Drink Responsibly • Same-Day Express Delivery Across Nairobi & Suburbs
+  </div>
+
+  <!-- ── Header ── -->
+  <header class="header">
+    <div class="header__top">
+      <!-- Mobile Hamburger Button -->
+      <button id="btn-mobile-menu" class="header__action" aria-label="Open mobile menu" style="display: none; background: transparent; border: none; font-size: 24px; color: #fff;">
+        ☰
+      </button>
+
+      <!-- Logo -->
+      <a href="/" class="header__logo">
+        <span class="header__logo-icon">🍾</span>
+        <span class="header__logo-text">LIQA<span>STO</span></span>
+      </a>
+
+      <!-- Search Bar -->
+      <div class="header__search">
+        <form id="header-search-form" class="header__search-form">
+          <input type="text" id="header-search-input" class="header__search-input" placeholder="Search wines, whiskeys, beers, cigarettes, accessories..." autocomplete="off">
+          <button type="submit" class="header__search-btn" aria-label="Search">
+            🔍 Search
+          </button>
+        </form>
+        <div id="search-suggestions" class="search-suggestions" style="display: none; position: absolute; top: 100%; left: 0; right: 0; background: #fff; border-radius: var(--radius-md); box-shadow: var(--shadow-xl); z-index: var(--z-dropdown); margin-top: 4px; overflow: hidden;"></div>
+      </div>
+
+      <!-- Header Actions -->
+      <div class="header__actions" style="display: flex; align-items: center; gap: 16px;">
+        <!-- Account -->
+        <div class="header__account-wrapper" style="position: relative;">
+          <a href="/login.html" id="header-account-link" class="header__action" style="display: flex; align-items: center; gap: 6px; color: #fff;">
+            <span style="font-size: 18px;">👤</span>
+            <span id="header-account-label" class="header__action-label" style="font-size: 13px; font-weight: 600;">Account</span>
+          </a>
+          <div id="account-dropdown" class="account-dropdown" style="display: none; position: absolute; right: 0; top: 100%; width: 180px; background: #fff; border-radius: var(--radius-md); box-shadow: var(--shadow-lg); padding: 8px 0; z-index: var(--z-dropdown);">
+            <a href="/orders.html" style="display: block; padding: 8px 16px; color: var(--color-gray-800); font-size: 13px;">📦 My Orders</a>
+            <a href="/wishlist.html" style="display: block; padding: 8px 16px; color: var(--color-gray-800); font-size: 13px;">❤️ Wishlist</a>
+            <a href="/admin.html" style="display: block; padding: 8px 16px; color: var(--color-emerald-700); font-size: 13px; font-weight: 600;">⚙️ Admin Panel</a>
+            <hr style="border: 0; border-top: 1px solid var(--color-gray-100); margin: 6px 0;">
+            <a href="#" id="logout-btn" style="display: block; padding: 8px 16px; color: var(--color-error); font-size: 13px;">Logout</a>
+          </div>
+        </div>
+
+        <!-- Wishlist -->
+        <a href="/wishlist.html" class="header__action" style="display: flex; align-items: center; gap: 6px; color: #fff; position: relative;">
+          <span style="font-size: 18px;">🤍</span>
+          <span class="header__action-label" style="font-size: 13px; font-weight: 600;">Wishlist</span>
+          <span id="wishlist-badge" class="badge-count" style="display: none; position: absolute; top: -6px; left: 12px; background: var(--color-error); color: #fff; font-size: 10px; font-weight: 700; border-radius: 10px; padding: 2px 6px;">0</span>
+        </a>
+
+        <!-- Cart -->
+        <a href="/cart.html" class="header__action" style="display: flex; align-items: center; gap: 6px; color: #fff; position: relative;">
+          <span style="font-size: 20px;">🛒</span>
+          <span class="header__action-label" style="font-size: 13px; font-weight: 600;">Cart</span>
+          <span id="cart-badge" class="badge-count" style="display: none; position: absolute; top: -6px; left: 12px; background: var(--color-emerald-400); color: #022c22; font-size: 10px; font-weight: 800; border-radius: 10px; padding: 2px 6px;">0</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Category Nav Bar -->
+    <nav class="header__nav" style="background: rgba(0,0,0,0.25); border-top: 1px solid rgba(255,255,255,0.08);">
+      <div style="max-width: var(--container-max); margin: 0 auto; display: flex; align-items: center; gap: 24px; padding: 8px 16px; overflow-x: auto; white-space: nowrap;">
+        <a href="/category.html" style="color: #fff; font-size: 13px; font-weight: 600; text-decoration: none;">All Categories</a>
+        <a href="/category.html?sub=Whiskey" style="color: rgba(255,255,255,0.85); font-size: 13px; text-decoration: none;">🥃 Whiskeys</a>
+        <a href="/category.html?sub=Beer" style="color: rgba(255,255,255,0.85); font-size: 13px; text-decoration: none;">🍺 Cold Beers</a>
+        <a href="/category.html?sub=Wine" style="color: rgba(255,255,255,0.85); font-size: 13px; text-decoration: none;">🍷 Fine Wines</a>
+        <a href="/category.html?sub=Gin" style="color: rgba(255,255,255,0.85); font-size: 13px; text-decoration: none;">🍸 Gins & Tonics</a>
+        <a href="/category.html?sub=Cigarettes" style="color: rgba(255,255,255,0.85); font-size: 13px; text-decoration: none;">🚬 Smokes & Vapes</a>
+        <a href="/category.html?categoryId=cat-accessories" style="color: var(--color-emerald-300); font-size: 13px; font-weight: 600; text-decoration: none;">✨ Bar & Smoke Accessories</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ── Main Content ── -->
+  <main class="page-content" style="max-width: var(--container-max); margin: 0 auto; padding: 24px 16px; width: 100%;">
+
+    <!-- Hero Banner Carousel -->
+    <section class="hero" style="margin-bottom: 32px;">
+      <div class="hero__carousel" style="position: relative; border-radius: var(--radius-xl); overflow: hidden; background: var(--gradient-brand); color: #fff; min-height: 280px; display: flex; align-items: center; box-shadow: var(--shadow-xl);">
+        <div class="hero__slide-content" style="padding: 40px; max-width: 600px; z-index: 2;">
+          <span class="badge" style="background: var(--color-emerald-400); color: #022c22; font-weight: 700; margin-bottom: 12px; display: inline-block;">FLASH DELIVERY ⚡</span>
+          <h1 style="color: #fff; font-size: var(--text-3xl); margin-bottom: 12px; line-height: 1.2;">Cold Drinks & Quick Smokes at Your Door in 30 Mins</h1>
+          <p style="color: rgba(255,255,255,0.9); margin-bottom: 24px; font-size: 15px;">Original whiskeys, imported wines, ice-cold beers, and rolling essentials. Pay securely via Lipa na M-Pesa.</p>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <a href="/category.html" class="btn btn-primary" style="background: var(--color-white); color: var(--color-emerald-800); font-weight: 700;">Explore Catalog →</a>
+            <a href="/category.html?sub=Beer" class="btn btn-secondary" style="border-color: #fff; color: #fff;">Order Ice Cold Beer</a>
+          </div>
+        </div>
+        <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 45%; background: url('https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800') center/cover no-repeat; opacity: 0.45; mask-image: linear-gradient(to left, black 60%, transparent 100%); -webkit-mask-image: linear-gradient(to left, black 60%, transparent 100%);"></div>
+      </div>
+    </section>
+
+    <!-- Trust Badges Strip -->
+    <section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 36px;">
+      <div class="card" style="padding: 16px 20px; display: flex; align-items: center; gap: 14px;">
+        <span style="font-size: 28px;">⚡</span>
+        <div>
+          <strong style="display: block; font-size: 14px; color: var(--color-gray-900);">Express 30-Min Delivery</strong>
+          <span style="font-size: 12px; color: var(--color-gray-500);">Instant dispatch across Nairobi</span>
+        </div>
+      </div>
+      <div class="card" style="padding: 16px 20px; display: flex; align-items: center; gap: 14px;">
+        <span style="font-size: 28px;">📱</span>
+        <div>
+          <strong style="display: block; font-size: 14px; color: var(--color-gray-900);">Lipa na M-Pesa</strong>
+          <span style="font-size: 12px; color: var(--color-gray-500);">Instant STK push payment</span>
+        </div>
+      </div>
+      <div class="card" style="padding: 16px 20px; display: flex; align-items: center; gap: 14px;">
+        <span style="font-size: 28px;">🛡️</span>
+        <div>
+          <strong style="display: block; font-size: 14px; color: var(--color-gray-900);">100% Genuine Drinks</strong>
+          <span style="font-size: 12px; color: var(--color-gray-500);">Authentic verified distributors</span>
+        </div>
+      </div>
+      <div class="card" style="padding: 16px 20px; display: flex; align-items: center; gap: 14px;">
+        <span style="font-size: 28px;">🔞</span>
+        <div>
+          <strong style="display: block; font-size: 14px; color: var(--color-gray-900);">18+ Verified Only</strong>
+          <span style="font-size: 12px; color: var(--color-gray-500);">Strict age verification upon delivery</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 1: Top Picks -->
+    <section id="section-top-picks" class="product-section" style="margin-bottom: 40px;"></section>
+
+    <!-- Section 2: Best Selling Whiskeys & Wines -->
+    <section id="section-whiskey-wine" class="product-section" style="margin-bottom: 40px;"></section>
+
+    <!-- Promo Banner: Accessories -->
+    <div style="background: linear-gradient(135deg, #022c22 0%, #065f46 100%); border-radius: var(--radius-lg); padding: 28px 36px; margin-bottom: 40px; color: #fff; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;">
+      <div>
+        <span style="color: var(--color-emerald-300); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">Elevate Your Bar Experience</span>
+        <h2 style="color: #fff; font-size: var(--text-2xl); margin: 6px 0 8px;">Smoking Papers, Cut-Crystal Glassware & Ash Trays</h2>
+        <p style="color: rgba(255,255,255,0.8); font-size: 14px; margin: 0;">Everything you need to enjoy your session with style and convenience.</p>
+      </div>
+      <a href="/category.html?categoryId=cat-accessories" class="btn btn-primary" style="background: var(--color-emerald-400); color: #022c22; font-weight: 700;">View Accessories →</a>
+    </div>
+
+    <!-- Section 3: Smoking & Accessories -->
+    <section id="section-accessories" class="product-section" style="margin-bottom: 40px;"></section>
+
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="footer" style="background: var(--gradient-footer); color: #fff; padding: 48px 16px 24px; margin-top: auto;">
+    <div style="max-width: var(--container-max); margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 36px; margin-bottom: 36px;">
+      <div>
+        <div style="font-family: var(--font-display); font-size: 24px; font-weight: 800; color: #fff; margin-bottom: 12px;">
+          LIQA<span style="color: var(--color-emerald-400);">STO</span>
+        </div>
+        <p style="color: rgba(255,255,255,0.7); font-size: 13px; line-height: 1.6;">
+          Kenya’s premier online liquor, cigarettes, and barware accessories storefront. Fast, discreet delivery with seamless M-Pesa checkout.
+        </p>
+        <div style="font-size: 12px; color: var(--color-emerald-300); font-weight: 600;">
+          📞 Helpline: +254 700 000 000
+        </div>
+      </div>
+      <div>
+        <h4 style="color: #fff; font-size: 14px; margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.05em;">Categories</h4>
+        <ul style="display: flex; flex-direction: column; gap: 8px; font-size: 13px; color: rgba(255,255,255,0.7);">
+          <li><a href="/category.html?sub=Whiskey" style="color: inherit;">Single Malt & Scotch Whisky</a></li>
+          <li><a href="/category.html?sub=Wine" style="color: inherit;">Red & White Wines</a></li>
+          <li><a href="/category.html?sub=Beer" style="color: inherit;">Beers & Ciders</a></li>
+          <li><a href="/category.html?sub=Cigarettes" style="color: inherit;">Cigarettes & Rolling Tobacco</a></li>
+          <li><a href="/category.html?categoryId=cat-accessories" style="color: inherit;">Ash Trays & Shot Glasses</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color: #fff; font-size: 14px; margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.05em;">Customer Care</h4>
+        <ul style="display: flex; flex-direction: column; gap: 8px; font-size: 13px; color: rgba(255,255,255,0.7);">
+          <li><a href="/orders.html" style="color: inherit;">Track Your Order</a></li>
+          <li><a href="/cart.html" style="color: inherit;">Shopping Cart</a></li>
+          <li><a href="/wishlist.html" style="color: inherit;">My Wishlist</a></li>
+          <li><a href="/login.html" style="color: inherit;">Account Login</a></li>
+          <li><a href="/admin.html" style="color: inherit;">Admin Dashboard</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color: #fff; font-size: 14px; margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.05em;">Compliance & Age Notice</h4>
+        <div style="background: rgba(255,255,255,0.06); padding: 14px; border-radius: var(--radius-md); font-size: 12px; color: rgba(255,255,255,0.75); line-height: 1.5;">
+          <strong>🔞 18+ Verification Required:</strong> Alcoholic beverages and tobacco products are strictly sold to persons of legal drinking age. Valid National ID or Passport required upon delivery.
+        </div>
+      </div>
+    </div>
+    <div style="max-width: var(--container-max); margin: 0 auto; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; font-size: 12px; color: rgba(255,255,255,0.5);">
+      <div>© 2026 Liqasto Kenya Ltd. All Rights Reserved.</div>
+      <div>Payment methods: M-Pesa • Visa • Mastercard • Cash on Delivery</div>
+    </div>
+  </footer>
+
+  <!-- ── Scripts ── -->
+  <script type="module" src="/js/app.js"></script>
+  <script type="module">
+    import { renderProductSection } from '/js/products.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Top Picks Row
+      renderProductSection(document.querySelector('#section-top-picks'), {
+        title: 'Popular Right Now 🔥',
+        maxItems: 6,
+        isRow: true,
+        viewAllLink: '/category.html'
+      });
+
+      // 2. Whiskeys & Wines
+      renderProductSection(document.querySelector('#section-whiskey-wine'), {
+        title: 'Premium Whiskeys & Fine Wines 🍷',
+        categoryId: 'cat-alcohol',
+        maxItems: 6,
+        isRow: true,
+        viewAllLink: '/category.html?categoryId=cat-alcohol'
+      });
+
+      // 3. Smoking & Accessories
+      renderProductSection(document.querySelector('#section-accessories'), {
+        title: 'Drinkware, Rolling Papers & Ash Trays 🥃',
+        categoryId: 'cat-accessories',
+        maxItems: 6,
+        isRow: true,
+        viewAllLink: '/category.html?categoryId=cat-accessories'
+      });
+    });
+  </script>
+</body>
+</html>
